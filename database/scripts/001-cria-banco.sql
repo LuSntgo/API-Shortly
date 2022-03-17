@@ -10,3 +10,15 @@ CREATE TABLE sessions (
    token TEXT NOT NULL UNIQUE,
    "userId" INTEGER NOT NULL REFERENCES users(id)
 );
+CREATE TABLE urls (
+   id SERIAL PRIMARY KEY,
+   "shortUrl" TEXT NOT NULL UNIQUE,
+   url TEXT NOT NULL
+);
+
+CREATE TABLE shortUrl (
+   id SERIAL PRIMARY KEY,
+   "userId" INTEGER NOT NULL REFERENCES users(id),
+   "urlsId" INTEGER NOT NULL REFERENCES urls(id),
+   "visitCount" INTEGER NOT NULL DEFAULT 0
+);
